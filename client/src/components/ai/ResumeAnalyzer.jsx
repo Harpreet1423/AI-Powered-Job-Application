@@ -759,15 +759,59 @@ export default function ResumeAnalyzer() {
                   size="lg"
                   variant="outline"
                   onClick={() => {
-                    navigator.clipboard.writeText(
-                      JSON.stringify(analysis, null, 2)
-                    );
-                    toast.success('Results copied to clipboard');
+                    const lines = [];
+                    lines.push('Resume Analysis Results');
+                    lines.push('='.repeat(40));
+                    lines.push('');
+                    lines.push(`ATS Score: ${analysis.atsScore}/100`);
+                    lines.push('');
+                    if (analysis.overallSummary) {
+                      lines.push('Overall Summary:');
+                      lines.push(analysis.overallSummary);
+                      lines.push('');
+                    }
+                    if (analysis.categories) {
+                      lines.push('Category Scores:');
+                      Object.entries(analysis.categories).forEach(([key, val]) => {
+                        lines.push(`  ${key}: ${val.score}/100 - ${val.feedback}`);
+                      });
+                      lines.push('');
+                    }
+                    if (analysis.strengths?.length > 0) {
+                      lines.push('Strengths:');
+                      analysis.strengths.forEach((s) => lines.push(`  - ${s}`));
+                      lines.push('');
+                    }
+                    if (analysis.improvements?.length > 0) {
+                      lines.push('Areas for Improvement:');
+                      analysis.improvements.forEach((s) => lines.push(`  - ${s}`));
+                      lines.push('');
+                    }
+                    if (analysis.missingKeywords?.length > 0) {
+                      lines.push('Missing Keywords:');
+                      analysis.missingKeywords.forEach((kw) => lines.push(`  - ${kw}`));
+                      lines.push('');
+                    }
+                    if (analysis.sectionFeedback) {
+                      lines.push('Section Feedback:');
+                      Object.entries(analysis.sectionFeedback).forEach(([section, fb]) => {
+                        lines.push(`  ${section}: ${fb}`);
+                      });
+                      lines.push('');
+                    }
+                    const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'resume-analysis.txt';
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    toast.success('Results downloaded');
                   }}
                   className="h-12 gap-2"
                 >
                   <Download className="h-4 w-4" />
-                  Copy Results
+                  Download Results
                 </Button>
               </div>
             </motion.div>

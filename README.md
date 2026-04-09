@@ -11,18 +11,18 @@ A modern, full-stack job portal web application with AI-powered resume analysis,
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React 18, Vite, TailwindCSS, shadcn/ui, Framer Motion |
-| Backend | Node.js, Express.js |
-| Database | SQLite (dev) / PostgreSQL (prod) with Prisma ORM |
-| Auth | JWT with httpOnly cookies |
-| AI | Anthropic Claude API (claude-sonnet-4-20250514) |
-| File Upload | Multer (PDF validation, 5MB limit) |
+| Layer       | Technology                                            |
+| ----------- | ----------------------------------------------------- |
+| Frontend    | React 18, Vite, TailwindCSS, shadcn/ui, Framer Motion |
+| Backend     | Node.js, Express.js                                   |
+| Database    | SQLite (dev) / PostgreSQL (prod) with Prisma ORM      |
+| Auth        | JWT with httpOnly cookies                             |
+| AI          | Anthropic Claude API (claude-sonnet-4-20250514)       |
+| File Upload | Multer (PDF validation, 5MB limit)                    |
 
 ## Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 
 ## Quick Start
@@ -48,6 +48,7 @@ cp ../.env.example .env
 ```
 
 Edit `server/.env` with your values:
+
 - `DATABASE_URL` - SQLite path (default works for local dev)
 - `JWT_SECRET` - Change to a secure random string
 - `ANTHROPIC_API_KEY` - Your Anthropic API key (optional - mock analysis works without it)
@@ -78,21 +79,23 @@ The app will be available at **http://localhost:5173**
 
 ## Test Accounts
 
-| Role | Email | Password |
-|------|-------|----------|
-| Job Seeker | seeker@example.com | password123 |
-| Recruiter | recruiter@example.com | password123 |
-| Admin | admin@example.com | password123 |
+| Role       | Email                 | Password    |
+| ---------- | --------------------- | ----------- |
+| Job Seeker | seeker@example.com    | password123 |
+| Recruiter  | recruiter@example.com | password123 |
+| Admin      | admin@example.com     | password123 |
 
 ## API Endpoints
 
 ### Auth
+
 - `POST /api/auth/register` - Register new user
 - `POST /api/auth/login` - Login
 - `POST /api/auth/logout` - Logout
 - `GET /api/auth/me` - Get current user
 
 ### Jobs
+
 - `GET /api/jobs` - List jobs (with search, filter, pagination)
 - `GET /api/jobs/:id` - Get job details
 - `POST /api/jobs` - Create job (recruiter)
@@ -103,16 +106,19 @@ The app will be available at **http://localhost:5173**
 - `GET /api/jobs/seeker/saved` - Get saved jobs (seeker)
 
 ### Applications
+
 - `POST /api/applications` - Apply for job (seeker, multipart/form-data)
 - `GET /api/applications/my-applications` - Get seeker's applications
 - `GET /api/applications/job/:jobId` - Get applicants for job (recruiter)
 - `PUT /api/applications/:id/status` - Update application status (recruiter)
 
 ### AI
+
 - `POST /api/ai/analyze-resume` - Analyze resume (multipart/form-data)
 - `GET /api/ai/analyses` - Get past analyses
 
 ### Admin
+
 - `GET /api/admin/stats` - Platform statistics
 - `GET /api/admin/users` - All users
 - `GET /api/admin/jobs` - All jobs
@@ -158,3 +164,5 @@ npm run build
 cd ../server
 NODE_ENV=production npm start
 ```
+
+# AI-Powered-Job-Application

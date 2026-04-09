@@ -23,7 +23,7 @@ const sidebarLinks = {
   seeker: [
     { label: 'My Applications', href: '/dashboard/seeker', icon: FileText },
     { label: 'Saved Jobs', href: '/dashboard/seeker/saved', icon: Heart },
-    { label: 'Resume Analyzer', href: '/dashboard/seeker/resume', icon: Brain },
+    { label: 'Resume Analyzer', href: '/dashboard/seeker/resume-analyzer', icon: Brain },
     { label: 'Profile', href: '/dashboard/seeker/profile', icon: User },
   ],
   recruiter: [

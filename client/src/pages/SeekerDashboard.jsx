@@ -174,7 +174,7 @@ export default function SeekerDashboard() {
             </Link>
 
             <Link
-              to="/dashboard/seeker/saved-jobs"
+              to="/dashboard/seeker/saved"
               className="flex items-center gap-4 rounded-lg border p-4 transition-colors hover:bg-gray-50"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100">
